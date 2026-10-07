@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact Esrom Ridez about car rental routes, luggage, pick-up locations, and booking requests in Uganda.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Contact | Esrom Ridez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Esrom Ridez home"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-controls="primaryNavigation" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+      <nav class="main-nav" id="primaryNavigation" aria-label="Primary navigation">
+        <a href="index.html">Home</a><a href="cars.html">Cars</a><a href="how-it-works.html">How it works</a><a href="helpful-answers.html">Helpful answers</a><a href="contact.html" aria-current="page">Contact</a>
+      </nav>
+      <a class="button button-dark nav-book" href="cars.html">Browse the cars <span aria-hidden="true">↗</span></a>
+    </header>
+    <main>
+      <section class="page-intro section-pad" aria-labelledby="pageTitle"><p class="eyebrow">Talk it through</p><h1 id="pageTitle">We can help you<br><em>choose a car.</em></h1><p>Have a question about your route, luggage, or pick-up? Send us a note and we’ll get back to you.</p></section>
+      <section class="contact-section section-pad" aria-labelledby="contactTitle"><div class="contact-copy-block"><p class="eyebrow">Esrom Ridez Uganda</p><h2 id="contactTitle">Let’s talk<br><em>about your trip.</em></h2><p class="contact-copy">Reach out with a question about your route, luggage, or pick-up. We’re here to help you find the right ride.</p><div class="contact-details"><a href="tel:+256773325074">+256 773325074</a><a href="mailto:tekesteesrom282@gmail.com">tekesteesrom282@gmail.com</a><span>8th street, Muyenga, Kampala</span></div></div><form id="contactForm" class="contact-form"><label for="contactName">Your name<input id="contactName" name="name" required autocomplete="name" placeholder="e.g. Amina Nansubuga"></label><label for="contactEmail">Email address<input id="contactEmail" name="email" type="email" required autocomplete="email" placeholder="you@example.com"></label><label for="contactMessage">What’s on your mind?<textarea id="contactMessage" name="message" required rows="4" placeholder="Tell us a little about your plans..."></textarea></label><button class="button button-light" type="submit">Send your message <span aria-hidden="true">↗</span></button><p class="contact-status" id="contactStatus" role="status" aria-live="polite"></p></form></section>
+      <section class="location-band" aria-label="Service area"><div class="location-label"><span class="location-mark" aria-hidden="true">✳</span><div><p class="eyebrow">Around Uganda</p><h2>Take the long way.</h2><p>Pick-up locations in Kampala, Entebbe, and Jinja.</p></div></div><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85" alt="Green hills and countryside in Uganda" loading="lazy"></section>
+    </main>
+    <footer><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a><span>© 2026 Esrom Ridez Uganda</span><a class="admin-link" href="index.html#staff">Staff workspace <span aria-hidden="true">↗</span></a></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

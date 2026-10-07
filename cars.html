@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Compare Esrom Ridez sedans, SUVs, and vans for travel around Kampala, Entebbe, and Jinja.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Cars | Esrom Ridez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Esrom Ridez home"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-controls="primaryNavigation" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+      <nav class="main-nav" id="primaryNavigation" aria-label="Primary navigation">
+        <a href="index.html">Home</a><a href="cars.html" aria-current="page">Cars</a><a href="how-it-works.html">How it works</a><a href="helpful-answers.html">Helpful answers</a><a href="contact.html">Contact</a>
+      </nav>
+      <a class="button button-dark nav-book" href="#fleet">Browse the cars <span aria-hidden="true">↗</span></a>
+    </header>
+    <main>
+      <section class="page-intro section-pad" aria-labelledby="pageTitle"><p class="eyebrow">The fleet · Kampala · Entebbe · Jinja</p><h1 id="pageTitle">A car for the way<br><em>you travel.</em></h1><p>From easy city drives to room for the whole group, compare the details that matter. Rates are shown in UGX per day; availability is confirmed after you send a request.</p></section>
+      <section class="search-panel section-pad" aria-labelledby="searchTitle">
+        <div class="search-heading"><span class="search-icon" aria-hidden="true">⌕</span><div><h2 id="searchTitle">Where are you headed?</h2><p>Choose your dates. We’ll carry them into your request.</p></div></div>
+        <form id="searchForm" class="search-form">
+          <label for="searchPickup">Pick-up point<select id="searchPickup"><option>Kampala</option><option>Entebbe</option><option>Jinja</option></select></label>
+          <label for="searchPickupDate">Pick-up date<input id="searchPickupDate" type="date" required></label>
+          <label for="searchReturnDate">Return date<input id="searchReturnDate" type="date" required></label>
+          <button class="button button-dark" type="submit">Browse cars <span aria-hidden="true">↗</span></button>
+        </form>
+      </section>
+      <section class="fleet-section section-pad" id="fleet" aria-labelledby="fleetTitle">
+        <div class="section-intro"><div><p class="eyebrow">Find your fit</p><h2 id="fleetTitle">Room for<br><em>your plans.</em></h2></div><p>Availability is confirmed after you send a request. Compare seats, luggage space, transmission, and daily rate to choose your ride.</p></div>
+        <div class="filter-bar"><div class="filter-tabs" role="group" aria-label="Filter cars by type"><button class="filter-tab active" type="button" data-filter="all" aria-pressed="true">All cars <span>06</span></button><button class="filter-tab" type="button" data-filter="sedan" aria-pressed="false">Sedans <span>02</span></button><button class="filter-tab" type="button" data-filter="suv" aria-pressed="false">SUVs <span>02</span></button><button class="filter-tab" type="button" data-filter="van" aria-pressed="false">Vans <span>02</span></button></div><button class="filter-toggle" id="filterToggle" type="button" aria-expanded="false" aria-controls="advancedFilters">More filters <span aria-hidden="true">⌄</span></button></div>
+        <div class="advanced-filters" id="advancedFilters"><label for="seatFilter">Seats<select id="seatFilter"><option value="all">Any number</option><option value="5">5 or more</option><option value="7">7 or more</option><option value="9">9 or more</option></select></label><label for="priceFilter">Maximum daily rate<input id="priceFilter" type="number" placeholder="UGX" min="0" inputmode="numeric"></label><span id="resultCount" aria-live="polite"></span></div>
+        <div id="vehicleGrid" aria-live="polite"></div>
+      </section>
+      <section class="location-band" aria-label="Service area"><div class="location-label"><span class="location-mark" aria-hidden="true">✳</span><div><p class="eyebrow">Around Uganda</p><h2>Take the long way.</h2><p>Pick-up locations in Kampala, Entebbe, and Jinja.</p></div></div><img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1400&q=85" alt="Green hills and countryside in Uganda" loading="lazy"></section>
+    </main>
+    <footer><a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a><span>© 2026 Esrom Ridez Uganda</span><a class="admin-link" href="index.html#staff">Staff workspace <span aria-hidden="true">↗</span></a></footer>
+  </div>
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" type="button" aria-label="Close dialog">×</button><div id="modalContent"></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>

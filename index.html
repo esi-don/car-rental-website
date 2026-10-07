@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Find a car for airport pickups, city days, family trips, and group travel around Kampala, Entebbe, and Jinja.">
+  <meta name="theme-color" content="#f7f6f1">
+  <title>Esrom Ridez | A good car for the road ahead</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="index.html" aria-label="Esrom Ridez home"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a>
+      <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation" aria-controls="primaryNavigation" aria-expanded="false"><span aria-hidden="true">☰</span></button>
+      <nav class="main-nav" id="primaryNavigation" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Home</a><a href="cars.html">Cars</a><a href="how-it-works.html">How it works</a><a href="helpful-answers.html">Helpful answers</a><a href="contact.html">Contact</a>
+      </nav>
+      <a class="button button-dark nav-book" href="cars.html">Browse the cars <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="home">
+      <section class="hero section-pad" aria-labelledby="heroTitle">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span> Kampala · Entebbe · Jinja</p>
+          <h1 id="heroTitle">The right ride<br>makes room for <em>more.</em></h1>
+          <p class="hero-lede">A quick airport pickup, a day around town, or a weekend with everyone aboard. Tell us where you’re going and find a car that fits.</p>
+          <div class="hero-actions"><a class="button button-accent" href="cars.html">Explore the fleet <span aria-hidden="true"></span></a><a class="text-link" href="how-it-works.html">See how a request works <span aria-hidden="true"></span></a></div>
+          <p class="hero-note"><span aria-hidden="true">✳</span> Booking requests are checked by our team before they’re confirmed.</p>
+        </div>
+        <div class="hero-art">
+          <img class="hero-photo" src="kla road.png" alt="A winding road crossing a green mountain landscape" fetchpriority="high">
+          <div class="hero-caption"><span class="caption-index"> THE JOURNEY</span><span>Start with the road ahead.</span></div>
+          <span class="hero-stamp" aria-hidden="true">UG<br><small>✳</small></span>
+        </div>
+      </section>
+
+      <section class="search-panel section-pad" aria-labelledby="searchTitle">
+        <div class="search-heading"><span class="search-icon" aria-hidden="true">⌕</span><div><h2 id="searchTitle">Where are you headed?</h2><p>Choose your dates. We’ll carry them into your request.</p></div></div>
+        <form id="searchForm" class="search-form">
+          <label for="searchPickup">Pick-up point<select id="searchPickup"><option>Kampala</option><option>Entebbe</option><option>Jinja</option></select></label>
+          <label for="searchPickupDate">Pick-up date<input id="searchPickupDate" type="date" required></label>
+          <label for="searchReturnDate">Return date<input id="searchReturnDate" type="date" required></label>
+          <button class="button button-dark" type="submit">Browse cars <span aria-hidden="true"></span></button>
+        </form>
+      </section>
+
+      <section class="overview-section section-pad" aria-labelledby="overviewTitle">
+        <div class="section-intro"><div><p class="eyebrow">Esrom Ridez, at a glance</p><h2 id="overviewTitle">Make room for<br><em>the good parts.</em></h2></div><p>Choose a car for your plans, send a request, and let our Kampala team check the details with you. Pick-ups are available in Kampala, Entebbe, and Jinja.</p></div>
+        <div class="overview-links">
+          <a href="cars.html"><span>01</span><div><h3>Explore the cars</h3><p>Compare the fleet, daily rates, seating, and luggage space.</p></div><b aria-hidden="true">↗</b></a>
+          <a href="how-it-works.html"><span>02</span><div><h3>How it works</h3><p>See what happens from the first request to confirmation.</p></div><b aria-hidden="true">↗</b></a>
+          <a href="helpful-answers.html"><span>03</span><div><h3>Helpful answers</h3><p>Find practical details about payment, pick-up, and drivers.</p></div><b aria-hidden="true">↗</b></a>
+          <a href="contact.html"><span>04</span><div><h3>Talk to our team</h3><p>Ask us about your route, luggage, or a suitable vehicle.</p></div><b aria-hidden="true">↗</b></a>
+        </div>
+      </section>
+    </main>
+
+    <section class="admin-view section-pad" id="adminView" aria-label="Staff workspace"><div class="admin-head"><div><p class="eyebrow">Staff workspace</p><h2>Keep things <em>moving.</em></h2></div><button class="button button-light" id="closeAdmin" type="button">Back to website</button></div><div class="admin-stats" id="adminStats"></div><div class="admin-layout"><div class="admin-panel"><div class="panel-heading"><div><h3>Fleet manager</h3><p>Edit daily UGX rates and availability.</p></div><button class="button button-dark" id="resetData" type="button">Reset demo data</button></div><div class="admin-table-wrap"><table><thead><tr><th>Vehicle</th><th>Type</th><th>Daily rate (UGX)</th><th>Availability</th><th></th></tr></thead><tbody id="vehicleTable"></tbody></table></div></div><div class="admin-panel"><div class="panel-heading"><div><h3>Booking requests</h3><p>Confirm or cancel requests.</p></div></div><div id="bookingList" class="booking-list"></div></div></div></section>
+
+    <footer><a class="brand" href="#home"><span class="brand-mark" aria-hidden="true">E</span><span>Esrom <span>Ridez</span></span></a><span>© 2026 Esrom Ridez Uganda</span><button class="admin-link" id="openAdmin" type="button">Staff login <span aria-hidden="true">↗</span></button></footer>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="closeModal" type="button" aria-label="Close dialog">×</button><div id="modalContent"></div></div></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js" defer></script>
+</body>
+</html>
