@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website File Report - Esrom Ridez</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 40px;
+      color: #1b1b1b;
+      line-height: 1.6;
+      background: #f9fafb;
+    }
+    h1, h2, h3 {
+      color: #193c2f;
+    }
+    h1 {
+      border-bottom: 2px solid #d9e8df;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    .section {
+      background: #ffffff;
+      border: 1px solid #dfe7e1;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .summary {
+      font-size: 15px;
+      margin-bottom: 18px;
+    }
+    ul {
+      margin-top: 8px;
+      margin-bottom: 8px;
+      padding-left: 22px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .file-name {
+      font-weight: bold;
+      color: #275a46;
+    }
+    .note {
+      color: #4f5d58;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Esrom Ridez Website File Report</h1>
+
+  <div class="section">
+    <h2>Overview</h2>
+    <p class="summary">
+      This website is a static car-rental landing site for <strong>Esrom Ridez</strong>, designed for users to browse vehicles,
+      compare options, choose pickup/return dates, request a booking, and contact the business. The site uses plain HTML,
+      CSS, and JavaScript with no backend framework or database. It is a front-end website that stores car and booking
+      data locally in the browser and submits forms to Formspree for email delivery.
+    </p>
+    <p class="summary">
+      The project is a small brochure-style site with multiple pages, a fleet browser, a booking modal, and a staff/admin
+      workspace used for managing vehicle pricing and booking statuses.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Important Files and What They Do</h2>
+
+    <ul>
+      <li><span class="file-name">index.html</span> — This is the homepage. It contains the main hero section, landing message, navigation, search form for pickup date and location, overview links, and the staff workspace section. It also includes the booking modal and toast notification container used by the JavaScript.</li>
+
+      <li><span class="file-name">cars.html</span> — This page is the car catalog. It displays the search form for location and dates, filters for vehicle type/seats/price, and a dynamic vehicle grid populated by JavaScript. Users can click a car to open a booking form and estimate the cost.</li>
+
+      <li><span class="file-name">how-it-works.html</span> — This page explains the booking process step by step, from sending a request to receiving confirmation. It helps customers understand how the rental process works before they book.</li>
+
+      <li><span class="file-name">helpful-answers.html</span> — This is the FAQ page. It contains common customer questions about drivers, luggage, payments, pickup points, and booking confirmations. It gives users practical answers to reduce uncertainty before contact.</li>
+
+      <li><span class="file-name">contact.html</span> — This page provides contact information and a message form for customers who want to ask about routes, booking requests, luggage, or available cars. It connects to Formspree so the details are sent by email.</li>
+
+      <li><span class="file-name">site.css</span> — This is the main stylesheet for the entire website. It controls typography, layout, colors, navigation bars, cards, modal windows, forms, responsiveness, and every design element on the site. It is responsible for the overall look and feel.</li>
+
+      <li><span class="file-name">script.js</span> — This is the main logic file for the site. It contains the fleet data, price calculations, booking logic, form submission, modal behavior, filtering, booking confirmation, and the admin panel logic. It also manages local storage for saved vehicles and bookings.</li>
+
+      <li><span class="file-name">README.md</span> — This is the repository description file. At present it is minimal and only contains the project title, but it is the standard place to add setup notes, usage instructions, or project information in the future.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>What the JavaScript File Controls</h2>
+    <p>
+      The <span class="file-name">script.js</span> file is the heart of the website. It does the following:
+    </p>
+    <ul>
+      <li>Defines the list of vehicles, including name, type, seating capacity, luggage, transmission, driver requirement, and pricing.</li>
+      <li>Renders the fleet cards and filters them by type, seating capacity, and price.</li>
+      <li>Calculates rental totals including daily rate, driver cost, child seat, and one-way trip difference.</li>
+      <li>Displays a booking modal with a form used for customer booking requests.</li>
+      <li>Validates pickup and return dates to ensure logical entries.</li>
+      <li>Submits new booking requests and contact forms to Formspree.</li>
+      <li>Loads and saves data in browser local storage so the page can remember pricing and bookings locally.</li>
+      <li>Provides an admin view for staff to view bookings, change vehicle pricing, and toggle availability.</li>
+      <li>Shows toast notifications for user feedback such as errors or successful request submission.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Image and Media Files</h2>
+    <p>
+      The site includes several image files used as car photos and one landscape photo for the homepage hero section.
+    </p>
+    <ul>
+      <li><span class="file-name">kla road.png</span> — The hero background image on the home page, representing the travel experience and road journey.</li>
+      <li><span class="file-name">car 1.png</span> through <span class="file-name">car 25.png</span> — Vehicle photos used in the fleet and modal gallery for the cars available for rent.</li>
+    </ul>
+    <p class="note">These image files are important for the visual presentation and for helping users see the cars before booking.</p>
+  </div>
+
+  <div class="section">
+    <h2>Website Structure Summary</h2>
+    <p>
+      The project is structured as a simple multi-page static website:
+    </p>
+    <ul>
+      <li><strong>Home page</strong> introduces the business and gives a starting point for booking.</li>
+      <li><strong>Cars page</strong> allows customers to browse and select cars.</li>
+      <li><strong>How it works page</strong> explains the rental process.</li>
+      <li><strong>Helpful answers page</strong> addresses common questions.</li>
+      <li><strong>Contact page</strong> is used to reach the business directly.</li>
+      <li><strong>Common styling and interaction logic</strong> are shared across all pages via CSS and JavaScript.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Final Assessment</h2>
+    <p>
+      Overall, this is a front-end rental website for car browsing and booking. The main purpose of each file is to support the user experience: create a professional visual design, explain the service, let users browse available cars, and submit requests for booking or contact. The combination of HTML pages, CSS styling, and JavaScript interaction makes the website easy to use and visually consistent.
+    </p>
+  </div>
+</body>
+</html>
