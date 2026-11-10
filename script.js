@@ -1,3 +1,23 @@
+// Formspree handles delivery and any verification before showing success.
+const emailEndpoint = 'https://formspree.io/f/xbdbqvpq';
+async function sendFormEmail(fields) {
+  const deliveryForm = document.createElement('form');
+  deliveryForm.method = 'POST';
+  deliveryForm.action = emailEndpoint;
+  deliveryForm.acceptCharset = 'UTF-8';
+  for (const [name, value] of Object.entries(fields)) {
+    const input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = name;
+    input.value = String(value);
+    deliveryForm.appendChild(input);
+  }
+  document.body.appendChild(deliveryForm);
+  try { deliveryForm.submit(); } catch (error) { deliveryForm.remove(); throw error; }
+  // Navigation leads to Formspree's verification/result page; do not claim delivery here.
+  return new Promise(() => {});
+}
+
 const seedVehicles = [
   { id: 'toyota-premio', name: 'Toyota Premio', type: 'sedan', seats: 5, luggage: '2 large bags', transmission: 'Automatic', driver: 'Available on request', bestFor: 'Airport pickups and easy city days', price: 100000, available: true, image: 'car 1.png', images: ['car 2.png', 'car 3.png', 'car 4.png'], features: 'Fuel efficient · Bluetooth' },
   { id: 'toyota-fielder', name: 'Toyota Fielder', type: 'sedan', seats: 5, luggage: '3 large bags', transmission: 'Automatic', driver: 'Available on request', bestFor: 'Kampala errands with extra boot space', price: 120000, available: true, image: 'car 5.png', images: ['car 6.png', 'car 7.png', 'car 8.png'], features: 'Large boot · Bluetooth' },
@@ -74,6 +94,7 @@ async function api(path, options = {}) {
     if (conflict) fail('Those dates are already requested for this car. Please choose different dates.', 409);
     const quote = quoteFromForm(vehicle, { pickupDate: { value: body.pickupDate }, returnDate: { value: body.returnDate }, includeDriver: { checked: body.includeDriver }, includeChildSeat: { checked: body.includeChildSeat }, pickupLocation: { value: body.pickupLocation }, returnLocation: { value: body.returnLocation } });
     const booking = { reference: `ER-${Math.random().toString(36).slice(2, 8).toUpperCase()}`, vehicleId: vehicle.id, vehicleName: vehicle.name, name: body.name, email: body.email, phone: body.phone, pickupDate: body.pickupDate, returnDate: body.returnDate, pickupTime: body.pickupTime, returnTime: body.returnTime, pickupLocation: body.pickupLocation, returnLocation: body.returnLocation, requests: body.requests || '', status: 'pending', createdAt: new Date().toISOString(), ...quote };
+    await sendFormEmail({ ...booking, _subject: 'New vehicle booking request: ' + booking.reference });
     return { ok: true, booking };
   }
   if ((match = path.match(/^\/api\/bookings\/(.+)$/)) && method === 'PATCH') {
@@ -190,7 +211,7 @@ function openDetails(vehicleId) {
         <div class="estimate-lines" id="estimateLines"></div>
         <div class="booking-summary"><div><small>Estimated total (UGX)</small><strong id="estimate"></strong></div><small id="dayEstimate"></small></div>
         <button class="button button-accent" type="submit" id="submitBooking">Send booking request <span>↗</span></button>
-        <p class="form-note">After you send this, you will see your booking reference, the car, dates, locations, and this estimate.</p>
+        <p class="form-note">Continue to our secure submission page to complete any verification and see whether your request was accepted.</p>
       </form>
     </div>`;
   openModal();
@@ -263,12 +284,13 @@ function closeModal() {
 async function submitBooking(event, vehicle) {
   event.preventDefault();
   const form = event.currentTarget;
+  if (form.dataset.sending === 'true' || !form.reportValidity()) return;
   const pickupDate = form.pickupDate.value;
   const returnDate = form.returnDate.value;
   if (returnDate < pickupDate) return showToast('Return date must be on or after pickup date.', 'error');
   const payload = {
     vehicleId: vehicle.id,
-    name: form.name.value.trim(),
+    name: form.elements.namedItem('name').value.trim(),
     email: form.email.value.trim(),
     phone: form.phone.value.trim(),
     pickupDate,
@@ -283,7 +305,8 @@ async function submitBooking(event, vehicle) {
   };
   const button = $('#submitBooking');
   button.disabled = true;
-  button.textContent = 'Sending request…';
+  form.dataset.sending = 'true';
+  button.textContent = 'Opening secure submission…';
   try {
     const result = await api('/api/bookings', { method: 'POST', body: JSON.stringify(payload) });
     bookings = [result.booking, ...bookings.filter((item) => item.reference !== result.booking.reference)];
@@ -299,6 +322,7 @@ async function submitBooking(event, vehicle) {
       renderAdmin();
     } else {
       showToast(error.message, 'error');
+      form.dataset.sending = 'false';
       button.disabled = false;
       button.innerHTML = 'Send booking request <span>↗</span>';
     }
@@ -323,7 +347,7 @@ function showBookingConfirmation(booking, previews, emailSent, errorMessage) {
     </div>
     ${previewLink}
     <p class="form-note">${emailSent
-      ? 'Keep this reference and quote it when you call +256 704 221 808 or write to hello@esromridez.ug.'
+      ? 'Keep this reference and quote it when you call +256 704 221 808 or write to tekesteesrom282@gmail.com.'
       : 'Please call +256 704 221 808 and quote the reference. We have not claimed that an email was sent.'}</p>
     <button class="button button-dark" id="doneConfirmation" type="button">Done</button>`;
   openModal();
@@ -384,18 +408,24 @@ $('#searchForm')?.addEventListener('submit', (event) => {
 $('#contactForm')?.addEventListener('submit', async (event) => {
   event.preventDefault();
   const form = event.currentTarget;
-  const button = form.querySelector('button');
+  if (form.dataset.sending === 'true' || !form.reportValidity()) return;
+  const button = form.querySelector('button[type="submit"]') || form.querySelector('button');
+  const label = button.textContent;
   button.disabled = true;
+  form.dataset.sending = 'true';
+  button.textContent = 'Opening secure submission…';
   try {
-    const subject = encodeURIComponent(`Message from ${form.name.value}`);
-    const text = encodeURIComponent(`${form.message.value}\n\n${form.name.value}\n${form.email.value}`);
-    window.location.href = `mailto:hello@esromridez.ug?subject=${subject}&body=${text}`;
-    form.reset();
-    showToast('Opening your email app so you can send your message to Esrom Ridez.');
+    await sendFormEmail({
+      name: form.elements.namedItem('name').value.trim(),
+      email: form.elements.namedItem('email').value.trim(),
+      message: form.elements.namedItem('message').value.trim(),
+      _subject: 'New Esrom Ridez contact message'
+    });
   } catch (error) {
-    showToast(error.message, 'error');
-  } finally {
+    showToast('Unable to submit your message. Please try again.', 'error');
+    form.dataset.sending = 'false';
     button.disabled = false;
+    button.textContent = label;
   }
 });
 $('#openAdmin')?.addEventListener('click', () => {
